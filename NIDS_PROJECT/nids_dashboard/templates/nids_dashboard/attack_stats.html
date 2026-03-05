@@ -1,0 +1,84 @@
+{% extends 'nids_dashboard/base.html' %}
+{% block content %}
+
+<h2 class="mb-4">📈 Attack Statistics</h2>
+<a href="{% url 'dashboard' %}" class="btn btn-danger">⬅ Back</a>
+<br><br>
+<div class="row">
+    <div class="col-md-6">
+        <div class="cyber-card">
+            <h5>Attack Distribution (Pie)</h5>
+            <canvas id="pieChart"></canvas>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="cyber-card">
+            <h5>Attack Frequency (Bar)</h5>
+            <canvas id="barChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="cyber-card">
+            <h5>Attack Trend Over Time (Line)</h5>
+            <canvas id="lineChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const labels = [{% for s in stats %}"{{ s.attack_type }}",{% endfor %}];
+const data = [{% for s in stats %}{{ s.total }},{% endfor %}];
+
+// PIE CHART
+new Chart(document.getElementById('pieChart'), {
+    type: 'pie',
+    data: {
+        labels: labels,
+        datasets: [{
+            data: data
+        }]
+    }
+});
+
+// BAR CHART
+new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Attack Count',
+            data: data
+        }]
+    }
+});
+
+// LINE CHART
+new Chart(document.getElementById('lineChart'), {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Attack Trend',
+            data: data,
+            fill: false,
+            tension: 0.3
+        }]
+    }
+});
+</script>
+{% if stats %}
+<script>
+const labels = [{% for s in stats %}"{{ s.attack_type }}",{% endfor %}];
+const data = [{% for s in stats %}{{ s.total }},{% endfor %}];
+</script>
+{% else %}
+<p>No attack data available.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,6 @@
+src_ip,dst_ip,protocol,bytes,label
+192.168.1.100,10.0.0.1,TCP,300,normal
+10.0.0.2,192.168.1.200,UDP,15000,malicious
+172.16.0.3,192.168.1.50,TCP,450,normal
+10.0.0.8,192.168.1.60,ICMP,2500,malicious
+192.168.1.5,1.1.1.1,TCP,600,normal

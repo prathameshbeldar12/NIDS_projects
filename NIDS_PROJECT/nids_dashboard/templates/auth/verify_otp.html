@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify OTP</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100" style="
+background: url('/static/nids_dashboard/images/cyber-bg.jpg');
+background-size: cover;
+color: #00ffcc;">
+
+<div class="card">
+    <h2>🔐 OTP Verification</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="otp" placeholder="Enter OTP" required>
+        <button type="submit">Verify OTP</button>
+    </form>
+
+    {% for message in messages %}
+      <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+/* ================= RESET ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ================= GLOBAL BODY ================= */
+
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #0b0f19, #000);
+    color: #00ffcc;
+    font-family: 'Courier New', monospace;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    width: 100%;
+    background: #121826;
+    padding: 12px 0;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #00ffcc;
+}
+
+.nav-links a {
+    margin-left: 10px;
+    padding: 6px 12px;
+    border: 1px solid #00ffcc;
+    border-radius: 6px;
+    color: #00ffcc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background: #00ffcc;
+    color: black;
+}
+
+
+/* ================= DASHBOARD ================= */
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+
+/* ================= CARDS ================= */
+
+.cyber-card {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #00ffcc;
+    box-shadow: 0 0 20px #00ffcc;
+    text-align: center;
+}
+
+
+/* ================= TABLE ================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: center;
+}
+
+
+/* ================= BUTTON ================= */
+
+button {
+    padding: 10px 14px;
+    background: transparent;
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    box-shadow: 0 0 12px #00ffcc;
+    transform: scale(1.05);
+}
+
+
+/* ================= INPUT ================= */
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    background: black;
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    border-radius: 6px;
+}
+
+
+/* ================= ALERT ================= */
+
+.alert-high {
+    background: red;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+/* ================= DELETE ================= */
+
+.delete-btn {
+    color: red;
+    text-decoration: none;
+}
+
+
+/* ================= GLITCH ================= */
+
+.glitch {
+    animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* ================= AUTH PAGE ONLY ================= */
+
+.auth-body {
+    min-height: 100vh;
+    background: radial-gradient(circle, #020617, #000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-box {
+    width: 320px;
+    background: #0b1220;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px cyan;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px cyan;
+    }
+    to {
+        box-shadow: 0 0 30px cyan;
+    }
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+    .nav-links a {
+        margin-left: 6px;
+        padding: 5px 10px;
+    }
+}

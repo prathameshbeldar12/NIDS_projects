@@ -1,0 +1,14 @@
+<h2>Alert Settings</h2>
+
+<form method="post">
+ {% csrf_token %}
+ Phone: <input name="phone" value="{{ alert.phone_number }}"><br>
+
+ <input type="checkbox" name="email" {% if alert.email_alert %}checked{% endif %}>
+ Email Alerts<br>
+
+ <input type="checkbox" name="sms" {% if alert.sms_alert %}checked{% endif %}>
+ SMS Alerts<br>
+
+ <button type="submit">Save</button>
+</form>

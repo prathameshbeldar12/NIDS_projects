@@ -1,0 +1,139 @@
+/* ================= RESET ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ================= BODY ================= */
+
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #020617, #000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', monospace;
+    color: #00ffcc;
+}
+
+
+/* ================= CARD ================= */
+
+.card {
+    width: 360px;
+    max-width: 90%;
+    background: linear-gradient(180deg, #0c1622, #05080d);
+    padding: 32px 28px;
+    border-radius: 18px;
+    border: 1px solid #00ffcc;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.25);
+    text-align: center;
+    animation: fadeIn 0.6s ease;
+}
+
+
+/* ================= TITLE ================= */
+
+.card h2 {
+    margin-bottom: 22px;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: #00ffcc;
+}
+
+
+/* ================= INPUT ================= */
+
+.card input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    background: black;
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    font-size: 15px;
+}
+
+.card input::placeholder {
+    color: #4fffe0;
+}
+
+.card input:focus {
+    outline: none;
+    box-shadow: 0 0 10px #00ffcc;
+}
+
+
+/* ================= BUTTON ================= */
+
+.card button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #00f2ff, #0066ff);
+    border: none;
+    border-radius: 10px;
+    color: black;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.card button:hover {
+    box-shadow: 0 0 18px #00ffcc;
+    transform: scale(1.05);
+}
+
+
+/* ================= LINKS ================= */
+
+.card a {
+    display: inline-block;
+    margin-top: 12px;
+    color: #00ffcc;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+
+/* ================= ERROR / MESSAGE ================= */
+
+.card p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ff4d4d;
+}
+
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 480px) {
+    .card {
+        padding: 24px 20px;
+    }
+    .card h2 {
+        font-size: 20px;
+    }
+}

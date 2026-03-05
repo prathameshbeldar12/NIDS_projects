@@ -1,0 +1,38 @@
+.dashboard-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.cyber-card {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #00ffcc;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    text-align: center;
+}
+
+.delete-btn {
+    color: red;
+    text-decoration: none;
+}
+
+
+/* glitch animation */
+
+.glitch {
+    animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}

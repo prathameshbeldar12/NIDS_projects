@@ -1,0 +1,119 @@
+{% extends 'nids_dashboard/base.html' %}
+{% block content %}
+
+<h2 class="mb-4 text-neon">📊 Detection Dashboard</h2>
+
+<!-- ================= SUMMARY CARDS ================= -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="cyber-card">
+            <h5>🟢 Normal Traffic</h5>
+            <h2>{{ normal_count }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="cyber-card">
+            <h5>🚨 Attacks</h5>
+            <h2>{{ attack_count }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="cyber-card">
+            <h5>📈 Sensitivity</h5>
+            <h2>{{ sensitivity|floatformat:2 }}</h2>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<!-- ================= LOG TABLE ================= -->
+<h4 class="mt-4">🧾 Detection Logs</h4>
+
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Attack Type</th>
+            <th>Severity</th>
+            <th>Confidence</th>
+            <th>Time</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in detections %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ d.attack_type }}</td>
+            <td>
+                <span class="
+                    {% if d.severity == 'High' %}text-danger
+                    {% elif d.severity == 'Medium' %}text-warning
+                    {% else %}text-success{% endif %}
+                ">
+                    {{ d.severity }}
+                </span>
+            </td>
+            <td>{{ d.confidence }}</td>
+            <td>{{ d.created_at }}</td>
+            <td>
+                <a href="{% url 'delete_detection' d.id %}"
+                   class="btn btn-sm btn-danger"
+                   onclick="return confirm('Delete this record?');">
+                   🗑
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="text-center text-muted">
+                No detection records found
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<hr>
+
+<!-- ================= BAR CHART ================= -->
+<h4 class="mt-4">📊 Attack Distribution</h4>
+<canvas id="barChart" height="120"></canvas>
+
+<!-- ================= PIE CHART ================= -->
+<h4 class="mt-5">🧠 Normal vs Attack</h4>
+<canvas id="pieChart" height="120"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+/* ===== BAR CHART ===== */
+const barLabels = [{% for a in attack_stats %}'{{ a.attack_type }}',{% endfor %}]
+const barValues = [{% for a in attack_stats %}{{ a.total }},{% endfor %}]
+
+new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+        labels: barLabels,
+        datasets: [{
+            label: 'Records Count',
+            data: barValues
+        }]
+    }
+})
+
+/* ===== PIE CHART ===== */
+new Chart(document.getElementById('pieChart'), {
+    type: 'pie',
+    data: {
+        labels: ['Normal', 'Attack'],
+        datasets: [{
+            data: [{{ normal_count }}, {{ attack_count }}]
+        }]
+    }
+})
+</script>
+
+{% endblock %}

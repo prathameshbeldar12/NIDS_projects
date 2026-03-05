@@ -1,0 +1,88 @@
+/* ===== RESET ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ===== GLOBAL BODY ===== */
+
+body {
+    background: #0b0f19;
+    color: #00ffcc;
+    font-family: 'Courier New', monospace;
+}
+
+
+/* ===== NAVBAR ===== */
+
+.navbar {
+    width: 100%;
+    background: #121826;
+    padding: 12px 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links a {
+    margin-left: 10px;
+    padding: 6px 12px;
+    border: 1px solid #00ffcc;
+    border-radius: 6px;
+    color: #00ffcc;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    background: #00ffcc;
+    color: black;
+}
+
+
+/* ===== TABLE ===== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: center;
+}
+
+
+/* ===== BUTTON ===== */
+
+button {
+    padding: 8px 14px;
+    border: 1px solid #00ffcc;
+    background: transparent;
+    color: #00ffcc;
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: 0 0 10px #00ffcc;
+}
+
+
+/* ===== ALERT ===== */
+
+.alert-high {
+    background: red;
+    color: white;
+    padding: 10px;
+}
