@@ -7,9 +7,6 @@ from django.utils import timezone
 
 # ================= OTP EMAIL =================
 def send_otp_email(user, otp):
-    """
-    Send OTP email for password reset
-    """
 
     if not user.email:
         return False
@@ -19,7 +16,7 @@ Hello {user.username},
 
 🔐 Your NIDS Password Reset OTP is:
 
-    {otp}
+{otp}
 
 ⏳ This OTP is valid for 5 minutes.
 
@@ -27,7 +24,7 @@ If you did not request this, please ignore this email.
 
 — NIDS Security Team
 Time: {timezone.now()}
-    """
+"""
 
     send_mail(
         subject="🔐 NIDS Password Reset OTP",
@@ -41,33 +38,38 @@ Time: {timezone.now()}
 
 
 # ================= ATTACK ALERT EMAIL =================
-def send_attack_alert(user, detection):
-    """
-    Send attack alert email to user
-    """
+def send_attack_alert_bulk(user, detections):
 
     if not user.email:
         return False
 
+    attack_logs = ""
+
+    for d in detections:
+        attack_logs += f"""
+Attack Type : {d.attack_type}
+Severity    : {d.severity}
+Confidence  : {d.confidence}
+Detected At : {d.created_at}
+-----------------------------------------
+"""
+
     message = f"""
-🚨 ALERT: Attack Detected in NIDS System
+🚨 NIDS SECURITY ALERT 🚨
 
 Hello {user.username},
 
-An attack has been detected.
+The following attacks were detected in the system:
 
-Attack Type : {detection.attack_type}
-Severity    : {detection.severity}
-Confidence  : {detection.confidence}
-Detected At : {detection.created_at}
+{attack_logs}
 
-Please log into dashboard immediately.
+Please login to the dashboard for full details.
 
 — NIDS Monitoring System
-    """
+"""
 
     send_mail(
-        subject="🚨 NIDS Alert – Attack Detected",
+        subject="🚨 Multiple Attacks Detected - NIDS",
         message=message,
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[user.email],

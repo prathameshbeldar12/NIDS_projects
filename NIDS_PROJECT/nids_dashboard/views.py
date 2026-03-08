@@ -11,7 +11,7 @@ from django.db.models import Count
 from django.utils.timezone import now, timedelta
 
 from .models import DetectionResult, PasswordResetOTP
-from .alerts import send_otp_email, send_attack_alert
+from .alerts import send_otp_email, send_attack_alert_bulk
 
 
 # ================= AUTH =================
